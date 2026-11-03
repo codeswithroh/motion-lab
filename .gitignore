@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+node_modules/
+renders/
+examples/*/assets/audio/*
+!examples/*/assets/audio/.gitkeep

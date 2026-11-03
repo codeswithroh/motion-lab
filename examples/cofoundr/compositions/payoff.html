@@ -1,0 +1,88 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/InstrumentSerif-Regular.ttf");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      background: #f0f2f8;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+    }
+    /* the logo: r15, centres 20 apart, scaled x8 */
+    .lobe {
+      position: absolute;
+      top: 260px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+    }
+    #lobe-you {
+      left: 340px;
+      background: #3b5bdb;
+    }
+    #lobe-them {
+      left: 500px;
+      background: #818cf8;
+    }
+    #wordmark {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      top: 540px;
+      text-align: center;
+      font-family: "Instrument Serif", serif;
+      font-size: 150px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+      opacity: 0;
+    }
+    #tagline {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      top: 740px;
+      text-align: center;
+      font-size: 40px;
+      font-weight: 500;
+      color: #64748b;
+      letter-spacing: -0.01em;
+    }
+    #tagline .w {
+      display: inline-block;
+      opacity: 0;
+    }
+    #tagline .accent {
+      color: #3b5bdb;
+      font-weight: 700;
+    }
+  </style>
+  <div id="root" data-composition-id="payoff" data-width="1080" data-height="1080">
+    <div id="lobe-you" class="lobe"></div>
+    <div id="lobe-them" class="lobe"></div>
+    <div id="wordmark">cofoundr</div>
+    <div id="tagline">
+      <span class="w accent">10</span> <span class="w">ranked</span> <span class="w">co-founders</span>
+      <span class="w">in</span> <span class="w">about</span> <span class="w">60</span> <span class="w">seconds</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // two circles arrive apart, then meet as the logo; they touch at 0.70 s (back.out reaches the touching gap at 23% of 0.7 s), on the track's drop
+    tl.fromTo("#lobe-you", { x: -150, opacity: 0, scale: 0.7 }, { x: -150, opacity: 1, scale: 1, duration: 0.4, ease: "expo.out" }, 0);
+    tl.fromTo("#lobe-them", { x: 150, opacity: 0, scale: 0.7 }, { x: 150, opacity: 1, scale: 1, duration: 0.37, ease: "expo.out" }, 0.08);
+    tl.to("#lobe-you", { x: 0, duration: 0.7, ease: "back.out(1.4)" }, 0.54);
+    tl.to("#lobe-them", { x: 0, duration: 0.7, ease: "back.out(1.4)" }, 0.54);
+
+    tl.fromTo("#wordmark", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 1.1);
+    gsap.utils.toArray("#tagline .w").forEach((w, i) => {
+      tl.fromTo(w, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13 }, 1.4 + i * 0.07);
+    });
+
+    window.__timelines["payoff"] = tl;
+  </script>
+</template>

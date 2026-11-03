@@ -1,0 +1,85 @@
+<!doctype html>
+<html
+  lang="en"
+  data-composition-variables='[{"id":"profileUrl","type":"string","label":"LinkedIn URL","default":"linkedin.com/in/codeswithroh"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f0f2f8;
+      }
+      #ground {
+        position: absolute;
+        inset: 0;
+        background: #f0f2f8;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="17" data-width="1080" data-height="1080" data-fps="60">
+      <div id="ground"></div>
+      <div
+        id="hook"
+        data-composition-id="hook"
+        data-composition-src="compositions/hook.html"
+        data-start="0"
+        data-duration="3"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="pipeline"
+        data-composition-id="pipeline"
+        data-composition-src="compositions/pipeline.html"
+        data-start="3"
+        data-duration="10.4"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <div
+        id="payoff"
+        data-composition-id="payoff"
+        data-composition-src="compositions/payoff.html"
+        data-start="13.4"
+        data-duration="3.6"
+        data-track-index="1"
+        data-track-kind="graphics"
+        data-width="1080"
+        data-height="1080"
+      ></div>
+      <!-- Luxe, Johannes Bornlof (Epidemic Sound). From 25.365 s, a beat, so the drop at 39.47 s lands at 14.1 s, when the logo circles touch -->
+      <audio
+        id="music"
+        class="clip"
+        src="assets/audio/luxe.mp3"
+        data-start="0"
+        data-duration="17"
+        data-media-start="25.365"
+        data-track-index="2"
+        data-volume="1"
+        data-fade-in="0.05"
+        data-fade-out="1.2"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

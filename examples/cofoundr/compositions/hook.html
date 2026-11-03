@@ -1,0 +1,69 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/InstrumentSerif-Regular.ttf");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      background: #f0f2f8;
+      overflow: hidden;
+    }
+    #hook-line {
+      position: absolute;
+      left: 96px;
+      top: 330px;
+      font-family: "Instrument Serif", serif;
+      font-size: 120px;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: #0f172a;
+    }
+    #hook-line .w {
+      display: inline-block;
+      opacity: 1;
+    }
+    #hook-line .accent {
+      color: #3b5bdb;
+    }
+    #hook-you {
+      position: absolute;
+      left: 610px;
+      top: 350px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: #3b5bdb;
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1080">
+    <div id="hook-you"></div>
+    <div id="hook-line">
+      <span class="w">i</span> <span class="w">couldn't</span><br />
+      <span class="w">find</span> <span class="w">a</span><br />
+      <span class="w accent">cofounder.</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const words = gsap.utils.toArray("#hook-line .w");
+
+    // f0 is the thumbnail: the circle is already on screen
+    tl.fromTo("#hook-you", { scale: 0.86 }, { scale: 1, duration: 0.6, ease: "expo.out" }, 0);
+    // the line is already landed on f0 so the thumbnail reads
+    tl.set(words, { opacity: 1 }, 0);
+
+    // exit: words blur out, the circle carries into the input card's avatar (centre 198,468, 96 px)
+    words.forEach((w, i) => {
+      tl.to(w, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in" }, 2.45 + i * 0.03);
+    });
+    tl.to(
+      "#hook-you",
+      { x: 198 - 800, y: 468 - 540, scale: 96 / 380, duration: 0.55, ease: "power3.inOut" },
+      2.45,
+    );
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
