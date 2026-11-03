@@ -51,3 +51,7 @@ npx hyperframes preview
 ```
 
 The original music is licensed and not included. Put any track at `assets/audio/luxe.mp3`, then run `python3 ../../scripts/find_drop.py assets/audio/luxe.mp3 --hero 14.1` and set `data-media-start` in `index.html` to the value it prints.
+
+## License
+
+MIT. The bundled Instrument Serif font is under the SIL Open Font License 1.1 (see `examples/cofoundr/assets/fonts/FONT-LICENSE.txt`).
