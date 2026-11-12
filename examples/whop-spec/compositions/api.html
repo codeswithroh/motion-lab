@@ -1,0 +1,57 @@
+<template>
+  <style>
+    #api-root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #api-streak { position: absolute; left: -200px; top: 0; width: 2320px; height: 1080px; object-fit: cover; }
+    #api-stage { position: absolute; inset: 0; background: #f4f3ef; }
+    #api-code { position: absolute; left: 150px; top: 300px; width: 1010px; height: 600px; background: #fff; border-radius: 16px;
+      border: 1px solid #e3e1db; box-shadow: 0 20px 60px rgba(0,0,0,0.10); overflow: hidden; }
+    #api-tab { height: 50px; border-bottom: 1px solid #eee; font: 500 20px "JetBrains Mono", monospace; color: #555; padding: 13px 22px; }
+    #api-src { padding: 18px 26px; font: 400 19px/1.6 "JetBrains Mono", monospace; color: #222; white-space: pre; }
+    .k { color: #b0361a; } .s { color: #2b7a3d; } .tg { color: #1f5fbf; }
+    .al { opacity: 0; }
+    #api-card { position: absolute; left: 1240px; top: 360px; width: 520px; height: 480px; background: #fff; border-radius: 18px;
+      border: 1px solid #e3e1db; box-shadow: 0 24px 70px rgba(0,0,0,0.14); padding: 34px 36px; color: #141414; }
+    #api-card .lbl { font-size: 22px; color: #777; font-weight: 500; }
+    #api-card .price { font-size: 76px; font-weight: 700; letter-spacing: -0.04em; margin: 8px 0 26px; }
+    #api-card .fld { border: 1px solid #dcdad4; border-radius: 10px; height: 64px; padding: 18px 18px; font-size: 22px; color: #999; margin-bottom: 16px; }
+    #api-card .pay { background: var(--accent); color: #fff; border-radius: 12px; height: 70px; text-align: center; font-size: 26px; font-weight: 600; padding-top: 20px; }
+  </style>
+  <div id="api-root" data-composition-id="api" data-width="1920" data-height="1080">
+    <img id="api-streak" class="clip" src="assets/img/streak.jpg" data-start="0" data-duration="1" />
+    <div class="pw clip" id="api-pw1" style="left:960px;top:540px" data-start="0" data-duration="1">
+      <div id="api-pill1" class="pill"><span class="ghost">One API.</span><span class="live"></span></div>
+    </div>
+    <div id="api-stage" class="clip" data-start="1" data-duration="2.3333">
+      <div id="api-code">
+        <div id="api-tab">checkout.tsx</div>
+        <div id="api-src"><div class="al"><span class="k">import</span> { WhopElements, Checkout, CheckoutElement } <span class="k">from</span> <span class="s">"@whop/elements-react"</span>;</div><div class="al"><span class="k">import</span> { loadWhop } <span class="k">from</span> <span class="s">"@whop/elements"</span>;</div><div class="al"> </div><div class="al"><span class="k">function</span> Example() {</div><div class="al">  <span class="k">return</span> (</div><div class="al">    <span class="tg">&lt;WhopElements</span> elements={loadWhop()}<span class="tg">&gt;</span></div><div class="al">      <span class="tg">&lt;Checkout</span> plan=<span class="s">"plan_demo_1"</span><span class="tg">&gt;</span></div><div class="al">        <span class="tg">&lt;CheckoutElement /&gt;</span></div><div class="al">      <span class="tg">&lt;/Checkout&gt;</span></div><div class="al">    <span class="tg">&lt;/WhopElements&gt;</span></div><div class="al">  );</div><div class="al">}</div></div>
+      </div>
+      <div id="api-card">
+        <div class="lbl">Checkout</div>
+        <div class="price">€26.74</div>
+        <div class="fld">you@example.com</div>
+        <div class="fld">Card information</div>
+        <div id="api-pay" class="pay">Pay</div>
+      </div>
+    </div>
+    <div class="pw clip" id="api-pw2" style="left:960px;top:170px" data-start="1" data-duration="2.3333">
+      <div id="api-pill2" class="pill"><span class="ghost">Power your platform from our API</span><span class="live"></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#api-streak", { x: 0 }, { x: -200, duration: 1, ease: "none" }, 0);
+    fx.pop(tl, document, "#api-pill1", 0.02);
+    fx.type(tl, document, "#api-pill1", "One API.", 0.04, 0.2, { to: 3, seed: 71 });
+    fx.type(tl, document, "#api-pill1", "One API.", 0.6667, 0.26, { from: 3, seed: 72 });
+    document.querySelectorAll("#api-src .al").forEach((el, i) => {
+      tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.01 }, 1.07 + i * 0.045);
+    });
+    tl.fromTo("#api-card", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 1.33);
+    tl.fromTo("#api-pay", { scale: 1 }, { scale: 0.94, duration: 0.08, yoyo: true, repeat: 1, ease: "power1.inOut" }, 2.6667);
+    tl.fromTo("#api-stage", { scale: 1 }, { scale: 1.05, duration: 2.3333, ease: "none" }, 1);
+    fx.pop(tl, document, "#api-pill2", 1.03);
+    fx.type(tl, document, "#api-pill2", "Power your platform from our API", 1.07, 0.7, { seed: 73, scramble: 4 });
+    window.__timelines["api"] = tl;
+  </script>
+</template>

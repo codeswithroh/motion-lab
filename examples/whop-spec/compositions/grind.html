@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #grind-root { position: absolute; inset: 0; overflow: hidden; background: #fff; }
+    .gcell { position: absolute; width: 960px; height: 540px; overflow: hidden; }
+    .gcell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  </style>
+  <div id="grind-root" data-composition-id="grind" data-width="1920" data-height="1080">
+    <div id="grind-c1" class="gcell clip" style="left:0;top:0" data-start="0" data-duration="2.6667"><img id="grind-i1" src="assets/img/bw-featured-customers.jpg" /></div>
+    <div id="grind-c2" class="gcell clip" style="left:960px;top:0" data-start="0.3333" data-duration="2.3334"><img id="grind-i2" src="assets/img/bw-two-men-walking-outside-a-building-from-.jpg" /></div>
+    <div id="grind-c3" class="gcell clip" style="left:0;top:540px" data-start="0.6667" data-duration="2"><img id="grind-i3" src="assets/img/bw-daniel-iles-founder-of-viral-coach-speak.jpg" /></div>
+    <div id="grind-c4" class="gcell clip" style="left:960px;top:540px" data-start="1.3333" data-duration="1.3334"><img id="grind-i4" src="assets/img/bw-sky-access.jpg" /></div>
+    <div class="pw clip" id="grind-pw" style="left:960px;top:540px" data-start="1" data-duration="1.6667">
+      <div id="grind-pill" class="pill sm"><span class="ghost">Build businesses, run ads, get paid.</span><span class="live"></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    ["#grind-i1", "#grind-i2", "#grind-i3", "#grind-i4"].forEach((s, i) => {
+      const at = [0, 0.3333, 0.6667, 1.3333][i];
+      tl.fromTo(s, { scale: 1.25 }, { scale: 1.06, duration: 2.6667 - at, ease: "power2.out" }, at);
+    });
+    fx.pop(tl, document, "#grind-pill", 1);
+    fx.type(tl, document, "#grind-pill", "Build businesses, run ads, get paid.", 1.04, 0.75, { seed: 21, scramble: 4 });
+    window.__timelines["grind"] = tl;
+  </script>
+</template>

@@ -1,0 +1,34 @@
+<template>
+  <style>
+    #verbs-root { position: absolute; inset: 0; overflow: hidden; background: #0b0b0b; }
+    .vui { position: absolute; left: 360px; top: 100px; width: 1200px; height: 800px; object-fit: contain; }
+  </style>
+  <div id="verbs-root" data-composition-id="verbs" data-width="1920" data-height="1080">
+    <img id="verbs-a" class="clip full" src="assets/img/site-21-full.png" data-start="0" data-duration="1" />
+    <img id="verbs-b" class="clip vui" src="assets/img/reach-dark.png" data-start="1" data-duration="1" />
+    <img id="verbs-c" class="clip vui" src="assets/img/payments-dark.png" data-start="2" data-duration="1" />
+    <img id="verbs-d" class="clip full" src="assets/img/hero.jpg" data-start="3" data-duration="1" />
+    <div id="verbs-v1" class="gl-v clip" style="left:640px" data-start="3" data-duration="1" data-layout-ignore></div>
+    <div id="verbs-v2" class="gl-v clip" style="left:1280px" data-start="3" data-duration="1" data-layout-ignore></div>
+    <div class="pw clip" id="verbs-pw" style="left:960px;top:900px" data-start="0" data-duration="3">
+      <div id="verbs-pill" class="pill"><span class="ghost">Build. Run ads. Get paid.</span><span class="live"></span></div>
+    </div>
+    <div class="pw clip" id="verbs-pw2" style="left:960px;top:540px" data-start="3" data-duration="1">
+      <div id="verbs-pill2" class="pill"><span class="ghost">Build. Run ads. Get paid.</span><span class="live">Build. Run ads. Get paid.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const T = "Build. Run ads. Get paid.";
+    tl.fromTo("#verbs-a", { scale: 1.12 }, { scale: 1.0, duration: 1, ease: "power2.out" }, 0);
+    tl.fromTo("#verbs-b", { scale: 1.12 }, { scale: 1.22, duration: 1, ease: "none" }, 1);
+    tl.fromTo("#verbs-c", { scale: 1.12 }, { scale: 1.22, duration: 1, ease: "none" }, 2);
+    tl.fromTo("#verbs-d", { scale: 1.25, x: -80 }, { scale: 1.15, x: 40, duration: 1, ease: "none" }, 3);
+    fx.pop(tl, document, "#verbs-pill", 0.02);
+    fx.type(tl, document, "#verbs-pill", T, 0.04, 0.3, { to: 6, seed: 51 });
+    fx.type(tl, document, "#verbs-pill", T, 1.02, 0.32, { from: 6, to: 15, seed: 52 });
+    fx.type(tl, document, "#verbs-pill", T, 2.02, 0.34, { from: 15, seed: 53 });
+    tl.fromTo("#verbs-pill2", { scale: 0.9 }, { scale: 1, duration: 1, ease: "power1.out" }, 3);
+    window.__timelines["verbs"] = tl;
+  </script>
+</template>

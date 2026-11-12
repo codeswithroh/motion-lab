@@ -1,0 +1,78 @@
+<template>
+  <style>
+    #globe-root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #globe-cv { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; }
+    #globe-word { position: absolute; left: 0; width: 1920px; top: 250px; text-align: center; color: #fff; font-weight: 800;
+      font-size: 400px; line-height: 1; letter-spacing: -0.06em; z-index: 5; mix-blend-mode: difference; }
+  </style>
+  <div id="globe-root" data-composition-id="globe" data-width="1920" data-height="1080">
+    <canvas id="globe-cv" class="clip" width="1920" height="1080" data-start="0" data-duration="2.6667"></canvas>
+    <div id="globe-word" class="clip" data-start="0" data-duration="1" data-layout-allow-overflow>economy</div>
+  </div>
+  <script>
+    (function () {
+      const cv = document.getElementById("globe-cv");
+      const ctx = cv.getContext("2d");
+      const N = 2600, pts = [];
+      const ga = Math.PI * (3 - Math.sqrt(5));
+      for (let i = 0; i < N; i++) {
+        const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = ga * i;
+        const lat = Math.asin(y), lon = th % (Math.PI * 2);
+        const n = Math.sin(lat * 3.1 + 0.7) * Math.cos(lon * 2.0 + 0.4) + 0.65 * Math.sin(lon * 4.7 + lat * 2.3 + 1.1) + 0.35 * Math.cos(lat * 7.3 - lon * 3.1);
+        pts.push({ x: Math.cos(th) * r, y, z: Math.sin(th) * r, land: n > 0.35 });
+      }
+      const RING = "  whop.com  ✳  the new economy  ✳  whop.com  ✳  the new economy  ✳";
+      const accent = "#FA4616";
+      function draw(t) {
+        ctx.clearRect(0, 0, 1920, 1080);
+        const R = t < 1 ? 150 : 150 + (310 - 150) * Math.min(1, Math.pow((t - 1) / 1.4, 0.6));
+        const cx = 960, cy = 540, yaw = 0.8 + t * 0.9, tilt = 0.38;
+        const cyw = Math.cos(yaw), syw = Math.sin(yaw), ct = Math.cos(tilt), st = Math.sin(tilt);
+        const ringA = t < 1 ? 0 : Math.min(1, (t - 1) / 0.25);
+        const rot = t * 1.2, RX = R * 1.55, RY = R * 0.42;
+        function ring(front) {
+          if (!ringA) return;
+          ctx.font = `600 ${Math.round(R * 0.16)}px InterV, Inter, sans-serif`;
+          ctx.textAlign = "center"; ctx.textBaseline = "middle";
+          for (let i = 0; i < RING.length; i++) {
+            const a = rot - (i / RING.length) * Math.PI * 2;
+            const z = Math.sin(a);
+            if ((z > 0) !== front) continue;
+            const x = cx + Math.cos(a) * RX, y = cy + Math.sin(a) * RY * 0.35 + z * RY * 0.0;
+            ctx.save();
+            ctx.translate(x, y - 0 + (z) * RY * 0.6);
+            ctx.scale(Math.max(0.15, Math.abs(Math.cos(a)) * 0.0 + 0.55 + 0.45 * z), 1);
+            ctx.globalAlpha = ringA * (front ? 1 : 0.35);
+            ctx.fillStyle = "#fff";
+            ctx.fillText(RING[i], 0, 0);
+            ctx.restore();
+          }
+        }
+        ring(false);
+        // sphere disc
+        ctx.globalAlpha = 1;
+        const g = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R);
+        g.addColorStop(0, "#1a0b07"); g.addColorStop(1, "#050302");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+        for (const p of pts) {
+          const x1 = p.x * cyw + p.z * syw, z1 = -p.x * syw + p.z * cyw;
+          const y2 = p.y * ct - z1 * st, z2 = p.y * st + z1 * ct;
+          if (z2 < 0) continue;
+          const sx = cx + x1 * R, sy = cy - y2 * R;
+          const s = (p.land ? 3.4 : 1.6) * (R / 300) * (0.55 + 0.45 * z2) + 0.5;
+          ctx.globalAlpha = p.land ? 0.55 + 0.45 * z2 : 0.16 + 0.14 * z2;
+          ctx.fillStyle = p.land ? accent : "#ffffff";
+          ctx.beginPath(); ctx.arc(sx, sy, s, 0, Math.PI * 2); ctx.fill();
+        }
+        ring(true);
+        ctx.globalAlpha = 1;
+      }
+      const tl = gsap.timeline({ paused: true });
+      const proxy = { t: 0 };
+      tl.fromTo(proxy, { t: 0 }, { t: 2.6667, duration: 2.6667, ease: "none", onUpdate: () => draw(proxy.t) }, 0);
+      tl.fromTo("#globe-word", { scale: 1.25 }, { scale: 1.0, duration: 1, ease: "power2.out" }, 0);
+      draw(0);
+      window.__timelines["globe"] = tl;
+    })();
+  </script>
+</template>

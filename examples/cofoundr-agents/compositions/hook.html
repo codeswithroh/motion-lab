@@ -1,0 +1,89 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Instrument Serif";
+      src: url("assets/fonts/InstrumentSerif-Regular.ttf");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      background: #f3efe6;
+      overflow: hidden;
+    }
+    #hook-line {
+      position: absolute;
+      left: 72px;
+      top: 120px;
+      font-family: "Instrument Serif", serif;
+      font-size: 156px;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      color: #111111;
+    }
+    #hook-line .w {
+      display: inline-block;
+      opacity: 1;
+    }
+    #hook-line .accent {
+      color: #3b5bdb;
+      font-style: italic;
+    }
+    /* a disc too big for the frame: "you", bleeding off the bottom-right corner */
+    #hook-you {
+      position: absolute;
+      left: 600px;
+      top: 470px;
+      width: 760px;
+      height: 760px;
+      border-radius: 50%;
+      background: #3b5bdb;
+    }
+    #hook-rule {
+      position: absolute;
+      left: 72px;
+      top: 958px;
+      width: 420px;
+      height: 3px;
+      background: #111111;
+      transform-origin: 0 50%;
+    }
+    #hook-tag {
+      position: absolute;
+      left: 72px;
+      top: 976px;
+      font-family: "Inter", sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #111111;
+    }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1080">
+    <div id="hook-you"></div>
+    <div id="hook-line">
+      <span class="w">now</span> <span class="w">i</span> <span class="w">just</span><br />
+      <span class="w">ask</span> <span class="w">my</span><br />
+      <span class="w accent">agent.</span>
+    </div>
+    <div id="hook-rule"></div>
+    <div id="hook-tag">cofoundr, part 2</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const words = gsap.utils.toArray("#hook-line .w");
+
+    // f0 is the thumbnail: the line is already landed; the disc rises into place behind it
+    tl.set(words, { opacity: 1 }, 0);
+    tl.fromTo("#hook-you", { y: 120, scale: 0.9 }, { y: 0, scale: 1, duration: 0.6, ease: "expo.out" }, 0);
+    tl.fromTo("#hook-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.1);
+
+    // exit: words blur out; the disc carries into the connect screen's "you" spot (centre 302,390, 180 px)
+    words.forEach((w, i) => {
+      tl.to(w, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in" }, 1.95 + i * 0.03);
+    });
+    tl.to(["#hook-rule", "#hook-tag"], { opacity: 0, duration: 0.18, ease: "power3.in" }, 1.95);
+    tl.to("#hook-you", { x: 302 - 980, y: 390 - 850, scale: 180 / 760, duration: 0.55, ease: "power3.inOut", immediateRender: false }, 1.95);
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

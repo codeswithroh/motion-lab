@@ -1,0 +1,27 @@
+<template>
+  <style>
+    #hook-root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+  </style>
+  <div id="hook-root" data-composition-id="hook" data-width="1920" data-height="1080">
+    <img id="hook-a" class="clip full" src="assets/img/hero.jpg" data-start="0" data-duration="1.3333" />
+    <img id="hook-b" class="clip full" src="assets/img/a-private-jet-flying-over-a-city-at-suns.jpg" data-start="1.3333" data-duration="1.3334" />
+    <div id="hook-v1" class="gl-v clip" style="left:640px" data-start="0" data-duration="2.6667" data-layout-ignore></div>
+    <div id="hook-v2" class="gl-v clip" style="left:1280px" data-start="0" data-duration="2.6667" data-layout-ignore></div>
+    <div id="hook-h1" class="gl-h clip" style="top:478px" data-start="0" data-duration="2.6667" data-layout-ignore></div>
+    <div id="hook-h2" class="gl-h clip" style="top:602px" data-start="0" data-duration="2.6667" data-layout-ignore></div>
+    <div class="pw clip" id="hook-pw" style="left:960px;top:540px" data-start="0" data-duration="2.6667">
+      <div id="hook-pill" class="pill"><span class="ghost">The new economy.</span><span class="live"></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hook-a", { scale: 1.18 }, { scale: 1.04, duration: 1.3333, ease: "power1.out" }, 0);
+    tl.fromTo("#hook-b", { scale: 1.12, x: 40 }, { scale: 1.0, x: -20, duration: 1.3334, ease: "none" }, 1.3333);
+    tl.fromTo(["#hook-v1", "#hook-v2"], { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.35, ease: "power2.out", stagger: 0.06 }, 0);
+    tl.fromTo(["#hook-h1", "#hook-h2"], { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.35, ease: "power2.out", stagger: 0.06 }, 0.1);
+    fx.pop(tl, document, "#hook-pill", 0.12);
+    fx.type(tl, document, "#hook-pill", "The new economy.", 0.18, 0.42, { to: 7, seed: 11 });
+    fx.type(tl, document, "#hook-pill", "The new economy.", 1.3333, 0.36, { from: 7, seed: 12 });
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

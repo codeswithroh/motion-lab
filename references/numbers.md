@@ -15,8 +15,15 @@
 | Something new | every 2-4 s |
 | Beat grid | frames per beat = fps × 60 / BPM; compute each beat from its index, never add a rounded beat |
 | Sound vs picture | sound peaks 0-1 frame after the picture event |
-| Loudness | −16 to −14 LUFS integrated, true peak ≤ −1 dBTP, measured on the delivered MP4 |
+| Loudness (explainer) | −16 to −14 LUFS integrated, true peak ≤ −1 dBTP, measured on the delivered MP4 |
 | Text size | ≥ 28 px at 1080; hook 104-120 px; wordmark 130-150 px |
+| Brand film arc | tension 15-30%, turn at 15-33%, proof x3 in the middle 40%, hero number ~75%, logo hold 3-4.5 s |
+| Voice | 1.6-2.1 words/s; a new line every 2-3 s; each word lands 0-4 frames before it is spoken |
+| Breath before a hit | 0.15-0.5 s, 9-18 dB down; then the loudest moment of the film on the brand name |
+| Motion budget | moving frames 33-55% (voice-led) / 55-70% (montage); still ≤ 35%; nothing static > 2 s before the end |
+| Camera (approved) | kick 2.2% push, clap 0.3° + 4 px, cut whip 70 px, hit 10% + white flash 0.32 s; intro/outro only |
+| Cuts on beat (montage) | ≥ 40% within 1 frame of an 8th, 0-2 frames early |
+| Mix loudness | music-only about −9 LUFS (refs −8.1 to −11.5); with voice −12 to −14.5 LUFS |
 | Safe area | content inside the central 90%; text inside 80% |
 
 ## Fixes for failures you'll hit

@@ -1,0 +1,37 @@
+<template>
+  <style>
+    #cli-root { position: absolute; inset: 0; overflow: hidden; background: #161616; }
+    #cli-win { position: absolute; left: 210px; top: 120px; width: 1500px; height: 840px; background: #0a0a0a; border-radius: 18px;
+      border: 1px solid #2a2a2a; box-shadow: 0 30px 90px rgba(0,0,0,0.6); overflow: hidden; }
+    #cli-bar { height: 52px; border-bottom: 1px solid #222; position: relative; }
+    .dot { position: absolute; top: 18px; width: 16px; height: 16px; border-radius: 50%; }
+    #cli-title { position: absolute; width: 100%; text-align: center; top: 14px; color: #8a8a8a; font: 500 20px "JetBrains Mono", monospace; }
+    #cli-body { padding: 26px 34px; font: 400 25px/1.5 "JetBrains Mono", monospace; color: #d6d6d6; white-space: pre; }
+    .c-acc { color: var(--accent); }
+    .c-dim { color: #7c7c7c; }
+    .cl { opacity: 0; }
+  </style>
+  <div id="cli-root" data-composition-id="cli" data-width="1920" data-height="1080">
+    <div id="cli-win" class="clip" data-start="0" data-duration="2">
+      <div id="cli-bar">
+        <div class="dot" style="left:20px;background:#ff5f57"></div>
+        <div class="dot" style="left:46px;background:#febc2e"></div>
+        <div class="dot" style="left:72px;background:#28c840"></div>
+        <div id="cli-title">~ — -zsh</div>
+      </div>
+      <div id="cli-body"><div><span class="c-dim">➜ ~ </span><span id="cli-cmd" class="pill-free"><span class="live"></span></span></div><div id="cli-l1" class="cl">whop@0.22.0 — Build and manage Whop apps from your terminal.</div><div id="cli-l2" class="cl c-dim">Usage: whop &lt;command&gt;</div><div id="cli-l3" class="cl"> </div><div id="cli-l4" class="cl c-dim">COMMERCE</div><div id="cli-l5" class="cl">  <span class="c-acc">products</span>          The things you sell. Each owns variants and a store page.</div><div id="cli-l6" class="cl">  <span class="c-acc">variants</span>          Purchasable configurations of a product.</div><div id="cli-l7" class="cl">  <span class="c-acc">promo-codes</span>       Discounts that creators configure for checkout.</div><div id="cli-l8" class="cl">  <span class="c-acc">memberships</span>       A customer's purchase of a variant, from checkout through cancellation.</div></div>
+    </div>
+    <div class="pw clip" id="cli-pw" style="left:960px;top:820px" data-start="0.6667" data-duration="1.3333">
+      <div id="cli-pill" class="pill"><span class="ghost">Run your business agentically</span><span class="live"></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cli-win", { scale: 0.96 }, { scale: 1.06, duration: 2, ease: "none" }, 0);
+    fx.type(tl, document, "#cli-cmd", "whop", 0.02, 0.22, { scramble: 0 });
+    for (let i = 1; i <= 8; i++) tl.fromTo("#cli-l" + i, { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.3 + i * 0.04);
+    fx.pop(tl, document, "#cli-pill", 0.6667);
+    fx.type(tl, document, "#cli-pill", "Run your business agentically", 0.7, 0.6, { seed: 41, scramble: 4 });
+    window.__timelines["cli"] = tl;
+  </script>
+</template>
