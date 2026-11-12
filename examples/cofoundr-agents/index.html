@@ -1,0 +1,44 @@
+<!doctype html>
+<html
+  lang="en"
+  data-composition-variables='[{"id":"prompt","type":"string","label":"Chat message","default":"find me a technical co-founder"}]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f0f2f8;
+      }
+      #ground {
+        position: absolute;
+        inset: 0;
+        background: #f0f2f8;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="17.5" data-width="1080" data-height="1080" data-fps="60">
+      <div id="ground"></div>
+      <div id="hook" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="2.5" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1080"></div>
+      <div id="agents" data-composition-id="agents" data-composition-src="compositions/agents.html" data-start="2.5" data-duration="11.2" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1080"></div>
+      <div id="payoff" data-composition-id="payoff" data-composition-src="compositions/payoff.html" data-start="13.7" data-duration="3.8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1080"></div>
+      <!-- Ludlow (Epidemic Sound), 144.1 BPM. From 49.215 s (the beat at 49.225, 10 ms early). The track's big hit (64.005 s) measures at 14.790 s in the render; the logo circles touch at 14.780 s. Volume 0.6 for about -15 LUFS -->
+      <audio id="music" class="clip" src="assets/audio/ludlow.mp3" data-start="0" data-duration="17.5" data-media-start="49.215" data-track-index="2" data-volume="0.6" data-fade-in="0.05" data-fade-out="1.2"></audio>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

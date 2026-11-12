@@ -1,0 +1,34 @@
+<template>
+  <style>
+    #dollar-root { position: absolute; inset: 0; overflow: hidden; background: #000; }
+    #dollar-bill { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; object-position: 50% 30%; }
+    #dollar-stack { position: absolute; left: 560px; top: 300px; width: 900px; z-index: 5; }
+    .bub-from { display: inline-block; font-size: 28px; color: #fff; background: rgba(0,0,0,0.6); padding: 6px 14px; border-radius: 8px; margin: 0 0 14px 10px; font-weight: 600; letter-spacing: -0.01em; }
+    .bub { display: inline-block; background: var(--accent); color: #fff; font-weight: 500; font-size: 44px; letter-spacing: -0.025em;
+      padding: 18px 30px 20px; border-radius: 34px; margin: 0 0 16px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.35); white-space: nowrap; }
+    .bubrow { display: block; }
+  </style>
+  <div id="dollar-root" data-composition-id="dollar" data-width="1920" data-height="1080">
+    <img id="dollar-bill" class="clip" src="assets/img/a-whop-billboard-reading-bet-on-yourself.jpg" data-start="0" data-duration="3.3333" />
+    <div class="pw clip" id="dollar-pw" style="left:960px;top:540px" data-start="0" data-duration="1.6667">
+      <div id="dollar-pill" class="pill"><span class="ghost">The fastest path to your next dollar</span><span class="live"></span></div>
+    </div>
+    <div id="dollar-stack" class="clip" data-start="1.6667" data-duration="1.6666">
+      <div id="dollar-from" class="bub-from">Whop · Economic Intelligence</div>
+      <div class="bubrow"><div id="dollar-b1" class="bub">Retry 86 cards that failed this week</div></div>
+      <div class="bubrow"><div id="dollar-b2" class="bub">Win back 240 members who lapsed this quarter</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#dollar-bill", { scale: 1.0, y: 0 }, { scale: 1.35, y: -60, duration: 3.3333, ease: "power2.in" }, 0);
+    fx.pop(tl, document, "#dollar-pill", 0.02);
+    fx.type(tl, document, "#dollar-pill", "The fastest path to your next dollar", 0.06, 0.7, { seed: 31, scramble: 4 });
+    tl.fromTo("#dollar-from", { opacity: 0 }, { opacity: 1, duration: 0.15 }, 1.6667);
+    ["#dollar-b1", "#dollar-b2"].forEach((s, i) => {
+      tl.fromTo(s, { opacity: 0, scale: 0.7, y: 30, transformOrigin: "0% 100%" }, { opacity: 1, scale: 1, y: 0, duration: 0.22, ease: "back.out(2)" }, 1.6867 + i * 0.6667);
+    });
+    tl.fromTo("#dollar-stack", { scale: 1, x: 0 }, { scale: 1.1, x: -50, duration: 1.6666, ease: "power1.in", transformOrigin: "30% 50%" }, 1.6667);
+    window.__timelines["dollar"] = tl;
+  </script>
+</template>

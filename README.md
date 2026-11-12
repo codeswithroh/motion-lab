@@ -104,6 +104,16 @@ The full table, with fixes for common lint failures, is in [`references/numbers.
 | [`references/sound.md`](references/sound.md) | Synthesizing a score from frame numbers when there's no track |
 | [`scripts/find_drop.py`](scripts/find_drop.py) | Finds a track's drops and the offset that lands one on a frame |
 | [`examples/cofoundr/`](examples/cofoundr) | The full reference build: scenes, spec, review notes, preview |
+| [`references/playbook.md`](references/playbook.md) | Rules for brand films and ads, measured from five reference films: the five-act arc, motif, cut modes, type, colour, sound, targets |
+| [`references/reference-films.md`](references/reference-films.md) | Second-by-second beat sheets of the five reference films |
+| [`references/sync.md`](references/sync.md) | One cue sheet driving music, SFX, camera and captions |
+| [`scripts/analyze_reference.py`](scripts/analyze_reference.py) | Breaks any video down: cuts, motion, tempo, drops, loudness, transcript, palette, beat sync, contact sheets |
+| [`scripts/score.py`](scripts/score.py) | Writes an original bed + SFX from a cue file and exports beat times for the picture |
+| [`scripts/camera.js`](scripts/camera.js) | Beat-driven camera: punches, tilts, whips, drop-out dims and hit flashes, shake limited to intro/outro |
+| [`scripts/word_cues.py`](scripts/word_cues.py) | Word-level voiceover timings so captions land as each word is spoken |
+| [`scripts/sync_check.py`](scripts/sync_check.py) | Measures a picture event against the audio hit on the rendered MP4 |
+| [`examples/cofoundr-agents/`](examples/cofoundr-agents) | The sequel explainer, scored to a measured hit |
+| [`examples/whop-spec/`](examples/whop-spec) | A brand-film spec ad where music, SFX and camera run off one cue sheet (code only) |
 
 <p align="right"><a href="#top">back to top</a></p>
 

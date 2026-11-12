@@ -2,8 +2,11 @@
 
 ```text
 GOAL:    what the viewer understands or does at the end, one sentence, with the product's real numbers.
-OUTPUT:  HyperFrames, 1080 x 1080, 60 fps (square for the X feed)
+OUTPUT:  HyperFrames. Brand film 1920 x 1080, 30 fps. Explainer 1080 x 1080, 60 fps (square for the X feed)
 TIME:    <s> x 60 = <frames>. Music: <track>, <BPM>, drop at <track s> lands on frame <n>.
+ARC:     (brand film) tension <s-s> / breath <s-s> + turn on <s> (brand name, loudest hit) / proof x3 <s-s> /
+         hero number <s> / resolve <s-end>, hold >= 3 s. Clock: voice | beat (<BPM>).
+MOTIF:   <one shape from the logo> - how it appears in every shot and how it becomes the logo.
 LOOK:    ground <hex> (the app shell), ink <hex>, muted <hex>, rule <hex>.
          accent <hex> = <what it means, e.g. "you">; second <hex> = <what it means>, appears only from <shot>.
          display <face> 400, <px> hook / <px> wordmark, tracking -1%.
